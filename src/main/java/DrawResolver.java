@@ -2,12 +2,12 @@ import java.util.ArrayList;
 
 public class DrawResolver {
 
-	public static int resolve(Hand hand1, Hand hand2) {
-		int value = hand1.getStrength();
+	public static int resolve(Hand player, Hand enemy) {
+		int value = player.getFigureAnalyzer().getFigureStrength(player);
 
 		switch (value) {
 		case 9: {
-			return iterateThroughRestValues(hand1, hand2) ? 1 : -1;
+			return iterateThroughRestValues(player, enemy) ? 1 : 2;
 		}
 		case 8: {
 		}
@@ -15,10 +15,10 @@ public class DrawResolver {
 
 		}
 		case 6: {
-			return iterateThroughRestValues(hand1, hand2) ? 1 : -1;
+			return iterateThroughRestValues(player, enemy) ? 1 : 2;
 		}
 		case 5: {
-			return iterateThroughRestValues(hand1, hand2) ? 1 : -1;
+			return iterateThroughRestValues(player, enemy) ? 1 : 2;
 		}
 		case 4: {
 
@@ -30,19 +30,19 @@ public class DrawResolver {
 			int hand1Value = 0;
 			int hand2Value = 0;
 
-			for (FigureOrganiser figureOrganiser : hand1.getFigureAnalizer().getData())
-				if (figureOrganiser.getFrequency() == 2)
+			for (FigureOrganiser figureOrganiser : player.getFigureAnalyzer().getFigureList().getFiguresList())
+				if (figureOrganiser.getCardFrequency() == 2)
 					hand1Value = ((ArrayList<Integer>) figureOrganiser.getCardValues()).get(0);
 
-			for (FigureOrganiser figureOrganiser : hand2.getFigureAnalizer().getData())
-				if (figureOrganiser.getFrequency() == 2)
+			for (FigureOrganiser figureOrganiser : enemy.getFigureAnalyzer().getFigureList().getFiguresList())
+				if (figureOrganiser.getCardFrequency() == 2)
 					hand2Value = ((ArrayList<Integer>) figureOrganiser.getCardValues()).get(0);
 
-			return (hand1Value > hand2Value) ? 1 : -1;
+			return (hand1Value > hand2Value) ? 1 : 2;
 		}
 
 		case 1: {
-			return iterateThroughRestValues(hand1, hand2) ? 1 : -1;
+			return iterateThroughRestValues(player, enemy) ? 1 : 2;
 		}
 
 		}
@@ -51,10 +51,10 @@ public class DrawResolver {
 	}
 
 	private static boolean iterateThroughRestValues(Hand hand1, Hand hand2) {
-		for (int i = Hand.size() - 1; i > 0; i--) {
-			if (hand1.getValue(i) > hand2.getValue(i))
+		for (int i = hand1.getHand().size() - 1; i > 0; i--) {
+			if (hand1.getCardValue(i) > hand2.getCardValue(i))
 				return true;
-			else if (hand1.getValue(i) < hand2.getValue(i))
+			else if (hand1.getCardValue(i) < hand2.getCardValue(i))
 				return false;
 		}
 

@@ -10,7 +10,7 @@ public class FigureOrganiserTest {
 	public void should_create_object() {
 		//given
 		//when
-		FigureOrganiser figureOrganiser = new FigureOrganiser(10, 10);
+		PokerFigureOrganiser figureOrganiser = new PokerFigureOrganiser(10, 10);
 		
 		//then
 		assertNotNull(figureOrganiser);
@@ -19,10 +19,10 @@ public class FigureOrganiserTest {
 	@Test
 	public void should_return_valid_frequency() {
 		//given
-		FigureOrganiser figureOrganiser = new FigureOrganiser(99, 10);
+		PokerFigureOrganiser figureOrganiser = new PokerFigureOrganiser(99, 10);
 		
 		//when
-		int result = figureOrganiser.getFrequency();
+		int result = figureOrganiser.getCardFrequency();
 		
 		//then
 		assertTrue(result == 99);
@@ -31,7 +31,7 @@ public class FigureOrganiserTest {
 	@Test
 	public void should_return_valid_card_value() {
 		//given
-		FigureOrganiser figureOrganiser = new FigureOrganiser(99, 10);
+		PokerFigureOrganiser figureOrganiser = new PokerFigureOrganiser(99, 10);
 		
 		//when
 		ArrayList<Integer> result = (ArrayList<Integer>) figureOrganiser.getCardValues();
@@ -43,7 +43,7 @@ public class FigureOrganiserTest {
 	@Test
 	public void should_return_valid_card_values() {
 		//given
-		FigureOrganiser figureOrganiser = new FigureOrganiser(99, 10);
+		PokerFigureOrganiser figureOrganiser = new PokerFigureOrganiser(99, 10);
 		
 		//when
 		ArrayList<Integer> result = (ArrayList<Integer>) figureOrganiser.getCardValues();
@@ -57,7 +57,7 @@ public class FigureOrganiserTest {
 	@Test
 	public void should_return_valid_string_representation() {
 		//given
-		FigureOrganiser figureOrganiser = new FigureOrganiser(99, 10);
+		PokerFigureOrganiser figureOrganiser = new PokerFigureOrganiser(99, 10);
 		ArrayList<Integer> cards = (ArrayList<Integer>) figureOrganiser.getCardValues();
 		cards.add(new Integer(200));
 		

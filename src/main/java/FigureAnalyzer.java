@@ -4,8 +4,8 @@ import java.util.Collections;
 
 public class FigureAnalyzer {
 
+	private PokerFigureOrganiserList figureList = new PokerFigureOrganiserList();
 	private Hand hand;
-	private ArrayList<FigureOrganiser> data = new ArrayList<FigureOrganiser>();
 
 	// ---------------------------------------------------------
 	
@@ -14,24 +14,25 @@ public class FigureAnalyzer {
 	}
 
 	// ---------------------------------------------------------
-	
-	public Collection<FigureOrganiser> getData() {
-		return data;
-	}
 
-	private Collection<Integer> getFrequenciesOfCardValues() {
+	private Collection<Integer> getFrequenciesOfCardValues(Hand hand) {
 		ArrayList<Integer> frequencies = new ArrayList<Integer>();
-		for (int i = 0; i < Hand.size(); i++)
-			frequencies.add(Collections.frequency(hand.getValues(),
-					hand.getValue(i)));
+		for (int i = 0; i < hand.getHand().size(); i++)
+			frequencies.add(Collections.frequency(hand.getCardsValues(),
+					hand.getCardValue(i)));
 		return frequencies;
 	}
 
 	// ---------------------------------------------------------
 	
-	public int getFigureStrength() {
-		anayzeMultipleCards();
-
+	public  FigureOrganiserList getFigureList() {
+		return figureList;
+	}
+	
+	public int getFigureStrength(Hand hand) {
+		anayzeMultipleCards(hand);
+		hand.setFigureAnalyzer(this);
+		
 		if (isPoker()) {
 			if (isRoyalPoker())
 				return 10;
@@ -62,74 +63,73 @@ public class FigureAnalyzer {
 			return 1;
 	}
 
-	public void anayzeMultipleCards() {
+	public void anayzeMultipleCards(Hand hand) {
 
 		boolean isAnythingAdded = false;
 		boolean isOnListInFigureOrganiser = false;
-		ArrayList<Integer> frequencies = (ArrayList<Integer>) getFrequenciesOfCardValues();
+		ArrayList<Integer> frequencies = (ArrayList<Integer>) getFrequenciesOfCardValues(hand);
 
 		for (int i = 0; i < frequencies.size(); i++) {
 			isAnythingAdded = false;
 			isOnListInFigureOrganiser = false;
 
-			for (FigureOrganiser figureOrganiser : data) {
-				if (frequencies.get(i) == figureOrganiser.getFrequency()) {
+			for (FigureOrganiser figureOrganiser : figureList.getFigureList()) {
+				if (frequencies.get(i) == figureOrganiser.getCardFrequency()) {
 					for (Integer cardValue : figureOrganiser.getCardValues()) {
-						if (hand.getValue(i) == cardValue) {
+						if (hand.getCardValue(i) == cardValue) {
 							isOnListInFigureOrganiser = true;
 							isAnythingAdded = true;
 						}
 					}
 					if (!isOnListInFigureOrganiser) {
-						figureOrganiser.getCardValues().add(hand.getValue(i));
+						figureOrganiser.getCardValues().add(hand.getCardValue(i));
 						isAnythingAdded = true;
 					}
 				}
 			}
 			if (!isAnythingAdded)
-				data.add(new FigureOrganiser(frequencies.get(i), hand
-						.getValue(i)));
+				figureList.addFigure(new PokerFigureOrganiser(frequencies.get(i), hand
+						.getCardValue(i)));
 
 		}
-		Collections.sort(data);
+		Collections.sort(figureList.getFigureList());
 	}
 
 	private boolean isPair() {
-		return data.get(data.size() - 1).getFrequency() == 2 ? true : false;
+		return figureList.getFrequencyOfLastElement() == 2 ? true : false;
 	}
 
 	private boolean areTwoPairs() {
-		return (data.get(data.size() - 1).getCardValues().size() == 2) ? true
+		return (figureList.getCardValuesOfLastElement().size() == 2) ? true
 				: false;
 	}
 
 	private boolean areThreeOfAKind() {
-		return data.get(data.size() - 1).getFrequency() == 3 ? true : false;
+		return figureList.getFrequencyOfLastElement() == 3 ? true : false;
 	}
 
 	private boolean isStraight() {
-		for (int i = 1; i < Hand.size(); i++)
-			if (hand.getValue(i - 1) + 1 != (hand.getValue(i)))
+		for (int i = 1; i < hand.getHand().size(); i++)
+			if (hand.getCardValue(i - 1) + 1 != (hand.getCardValue(i)))
 				return false;
 
 		return true;
 	}
 
 	private boolean isFlush() {
-		for (int i = 1; i < Hand.size(); i++)
-			if (!hand.getColor(i - 1).equals(hand.getColor(i)))
+		for (int i = 1; i < hand.getHand().size(); i++)
+			if (!hand.getCardColor(i - 1).equals(hand.getCardColor(i)))
 				return false;
 		return true;
 	}
 
 	private boolean isFull() {
-		return (data.size() == 2)
-				&& (data.get(0).getFrequency() == 2 && data.get(1)
-						.getFrequency() == 3) ? true : false;
+		return (figureList.size() == 2)
+				&& (figureList.getCardFrequency(0) == 2 && figureList.getCardFrequency(1) == 3) ? true : false;
 	}
 
 	private boolean isFourOfAKind() {
-		return (data.get(data.size() - 1).getFrequency() == 4) ? true : false;
+		return (figureList.getFrequencyOfLastElement() == 4) ? true : false;
 	}
 
 	private boolean isPoker() {
@@ -141,7 +141,7 @@ public class FigureAnalyzer {
 			return false;
 
 		int firstValue = 10;
-		for (Integer cardValue : hand.getValues())
+		for (Integer cardValue : hand.getCardsValues())
 			if (cardValue != firstValue++)
 				return false;
 		return true;
