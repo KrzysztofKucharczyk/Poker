@@ -46,7 +46,7 @@ public class MultipleCardAnalyzer {
 				figureList.addFigure(new PokerFigureOrganiser(frequencies.get(i), hand.getCardValue(i)));
 
 		}
-		
+
 		Collections.sort(figureList.getFiguresList());
 	}
 

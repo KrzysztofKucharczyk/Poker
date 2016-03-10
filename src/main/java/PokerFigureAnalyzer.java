@@ -12,43 +12,43 @@ public class PokerFigureAnalyzer implements IFigureAnalyzer {
 	// ---------------------------------------------------------
 	
 	@Override
-	public IFiguresOrganiserList getFigureList() {
+	public IFiguresOrganiserList getFigureOrganisersList() {
 		return figureList;
 	}
 
 	@Override
-	public int getFigureStrength(IHand hand) {
+	public Figure getFigure(IHand hand) {
 		MultipleCardAnalyzer.anayzeMultipleCards(hand, figureList);
 		hand.setFigureAnalyzer(this);
 
 		if (isPoker()) {
 			if (isRoyalPoker())
-				return 10;
-			return 9;
+				return new Figure(FigureName.ROYAL_FLUSH, 10);
+			return new Figure(FigureName.STRAIGHT_FLUSH, 9);
 		}
 
 		else if (isFourOfAKind())
-			return 8;
+			return new Figure(FigureName.FOUR_OF_A_KIND, 8);
 
 		else if (isFull())
-			return 7;
+			return new Figure(FigureName.FULL, 7);
 
 		else if (isFlush())
-			return 6;
+			return new Figure(FigureName.FLUSH, 6);
 
 		else if (isStraight())
-			return 5;
+			return new Figure(FigureName.STRAIGHT, 5);
 
 		else if (areThreeOfAKind())
-			return 4;
+			return new Figure(FigureName.THREE_OF_A_KIND, 4);
 
 		else if (areTwoPairs())
-			return 3;
+			return new Figure(FigureName.TWO_PAIRS, 3);
 
 		else if (isPair())
-			return 2;
+			return new Figure(FigureName.PAIR, 2);
 		else
-			return 1;
+			return new Figure(FigureName.HIGH_CARD, 1);
 	}
 
 	private boolean isPair() {

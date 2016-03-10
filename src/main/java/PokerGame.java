@@ -23,8 +23,8 @@ public class PokerGame implements IPoker {
 
 	@Override
 	public void calculatePlayersStrength() {
-		playerStrength = player.getFigureAnalyzer().getFigureStrength(player);
-		enemyStrength = enemy.getFigureAnalyzer().getFigureStrength(enemy);
+		playerStrength = player.getFigureAnalyzer().getFigure(player).getFigureValue();
+		enemyStrength = enemy.getFigureAnalyzer().getFigure(enemy).getFigureValue();
 	}
 
 	@Override
@@ -64,4 +64,5 @@ public class PokerGame implements IPoker {
 		poker.closeFile();
 		System.out.println("Points: " + poker.getPoints());
 	}
+	
 }

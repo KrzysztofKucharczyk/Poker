@@ -1,6 +1,6 @@
 public interface IFigureAnalyzer {
 	
-	public IFiguresOrganiserList getFigureList();
+	public IFiguresOrganiserList getFigureOrganisersList();
 	
-	public int getFigureStrength(IHand hand);
+	public Figure getFigure(IHand hand);
 }

@@ -18,4 +18,6 @@ public interface IHand {
 	public IFigureAnalyzer getFigureAnalyzer();
 	
 	public void setFigureAnalyzer(IFigureAnalyzer figureAnalyzer);
+
+	int getCardValueFromGivenFigureOrganiser(int figureOrganiserNumber, int argument);
 }
