@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class DrawResolver {
 
-	public static int resolve(Hand player, Hand enemy) {
+	public static int resolve(IHand player, IHand enemy) {
 		int value = player.getFigureAnalyzer().getFigureStrength(player);
 
 		switch (value) {
@@ -30,11 +30,11 @@ public class DrawResolver {
 			int hand1Value = 0;
 			int hand2Value = 0;
 
-			for (FigureOrganiser figureOrganiser : player.getFigureAnalyzer().getFigureList().getFiguresList())
+			for (IFiguresOrganiser figureOrganiser : player.getFigureAnalyzer().getFigureList().getFiguresList())
 				if (figureOrganiser.getCardFrequency() == 2)
 					hand1Value = ((ArrayList<Integer>) figureOrganiser.getCardValues()).get(0);
 
-			for (FigureOrganiser figureOrganiser : enemy.getFigureAnalyzer().getFigureList().getFiguresList())
+			for (IFiguresOrganiser figureOrganiser : enemy.getFigureAnalyzer().getFigureList().getFiguresList())
 				if (figureOrganiser.getCardFrequency() == 2)
 					hand2Value = ((ArrayList<Integer>) figureOrganiser.getCardValues()).get(0);
 
@@ -50,8 +50,8 @@ public class DrawResolver {
 
 	}
 
-	private static boolean iterateThroughRestValues(Hand hand1, Hand hand2) {
-		for (int i = hand1.getHand().size() - 1; i > 0; i--) {
+	private static boolean iterateThroughRestValues(IHand hand1, IHand hand2) {
+		for (int i = hand1.getCardsList().size() - 1; i > 0; i--) {
 			if (hand1.getCardValue(i) > hand2.getCardValue(i))
 				return true;
 			else if (hand1.getCardValue(i) < hand2.getCardValue(i))

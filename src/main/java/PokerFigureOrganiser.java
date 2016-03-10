@@ -1,8 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
-import java.lang.Comparable;
 
-public class PokerFigureOrganiser implements FigureOrganiser, Comparable<PokerFigureOrganiser> {
+public class PokerFigureOrganiser implements IFiguresOrganiser {
 	private int frequency;
 	private List<Integer> cardValues = new ArrayList<Integer>();
 
@@ -14,7 +13,7 @@ public class PokerFigureOrganiser implements FigureOrganiser, Comparable<PokerFi
 	}
 
 	// ---------------------------------------------------------
-
+	
 	@Override
 	public int getCardFrequency() {
 		return frequency;
@@ -32,12 +31,9 @@ public class PokerFigureOrganiser implements FigureOrganiser, Comparable<PokerFi
 		result = "[" + frequency + "," + cardValues + "]\n";
 		return result;
 	}
-	
-	
 
 	@Override
-	public int compareTo(PokerFigureOrganiser another) {
+	public int compareTo(IFiguresOrganiser another) {
 		return this.getCardFrequency() > another.getCardFrequency() ? 1 : -1;
 	}
-
 }

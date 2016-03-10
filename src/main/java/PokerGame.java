@@ -1,15 +1,15 @@
-public class PokerGame implements Poker{
-	
-	private FileReaderForPoker fileReader;
+public class PokerGame implements IPoker {
+
+	private IFileReader fileReader;
 	private WinCounter winCounter = new WinCounter();
-	private Hand player, enemy;
+	private IHand player, enemy;
 	private int playerStrength, enemyStrength;
-	
+	int i = 0;
 	public PokerGame(String filename) {
-		fileReader = new FileReaderForPoker(filename);
+		fileReader = new PokerFileReader(filename);
 
 	}
-	
+
 	@Override
 	public boolean isInput() {
 		return fileReader.nextLine();
@@ -46,12 +46,14 @@ public class PokerGame implements Poker{
 	public int getPoints() {
 		return winCounter.getPoints();
 	}
-	
-	
-	
+
+	public void closeFile() {
+		fileReader.closeInputStream();
+	}
+
 	public static void main(String[] args) {
 		PokerGame poker = new PokerGame("C:\\Users\\KRKUCHAR\\workspace\\Poker\\src\\data\\poker.txt");
-		
+
 		while (poker.isInput()) {
 			poker.getNewHandsForPlayers();
 			poker.calculatePlayersStrength();
@@ -59,6 +61,7 @@ public class PokerGame implements Poker{
 			poker.cleanAfterMatch();
 
 		}
+		poker.closeFile();
 		System.out.println("Points: " + poker.getPoints());
 	}
 }

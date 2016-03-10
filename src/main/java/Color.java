@@ -1,7 +1,5 @@
 
+
 public enum Color {
-	H,
-	S,
-	D,
-	C
+	H, S, D, C
 }

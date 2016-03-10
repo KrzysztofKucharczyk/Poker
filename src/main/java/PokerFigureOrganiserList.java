@@ -1,8 +1,8 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class PokerFigureOrganiserList implements FigureOrganiserList{
-	private List<PokerFigureOrganiser> figuresList =  new ArrayList<PokerFigureOrganiser>();
+public class PokerFigureOrganiserList implements IFiguresOrganiserList{
+	private List<IFiguresOrganiser> figuresList =  new ArrayList<IFiguresOrganiser>();
 
 	@Override
 	public int getFrequencyOfLastElement() {
@@ -10,12 +10,7 @@ public class PokerFigureOrganiserList implements FigureOrganiserList{
 	}
 
 	@Override
-	public List<PokerFigureOrganiser> getFigureList() {
-		return figuresList;
-	}
-
-	@Override
-	public void addFigure(FigureOrganiser newFigureOrganiser) {
+	public void addFigure(IFiguresOrganiser newFigureOrganiser) {
 		figuresList.add((PokerFigureOrganiser) newFigureOrganiser);
 	}
 
@@ -35,7 +30,7 @@ public class PokerFigureOrganiserList implements FigureOrganiserList{
 	}
 	
 	@Override
-	public List<PokerFigureOrganiser> getFiguresList() {
+	public List<IFiguresOrganiser> getFiguresList() {
 		return figuresList;
 	}
 	

@@ -1,4 +1,4 @@
-public class PlayingCard implements Card, Comparable<PlayingCard>{
+public class PlayingCard implements ICard, Comparable<ICard>{
 
 	private CardValue value;
 	private CardColor color;
@@ -24,7 +24,9 @@ public class PlayingCard implements Card, Comparable<PlayingCard>{
 		return new String(value + "" + color);
 	}
 
-	public int compareTo(PlayingCard other) {
-		return (getValue() > other.getValue()) ? 1 : -1;
+	public int compareTo(ICard other) {
+		if(getValue() > other.getValue()) return 1;
+		else if(getValue() < other.getValue()) return -1;
+		else return 0;
 	}
 }

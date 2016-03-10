@@ -5,16 +5,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class FileReaderForPoker implements FileReader {
-	private Scanner scanner; 
-	public FileReaderForPoker(String filename) {
+public class PokerFileReader implements IFileReader {
+	private Scanner scanner;
+	public PokerFileReader(String filename) {
 		initializeFileReader(filename);
-
 	}
 
 	@Override
-	public Hand getNewHand() {
-		List<PlayingCard> cards = new ArrayList<>();
+	public IHand getNewHand() {
+		List<ICard> cards = new ArrayList<>();
 		String line;
 
 		for (int i = 0; i < 5; i++) {
@@ -31,7 +30,6 @@ public class FileReaderForPoker implements FileReader {
 	public boolean nextLine() {
 		return scanner.hasNext();
 	}
-	
 
 	private void initializeFileReader(String filename) {
 		try {
@@ -40,5 +38,10 @@ public class FileReaderForPoker implements FileReader {
 			e.printStackTrace();
 		}
 		
+	}
+	
+	@Override
+	public void closeInputStream() {
+		scanner.close();
 	}
 }

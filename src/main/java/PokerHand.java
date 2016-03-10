@@ -1,29 +1,30 @@
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class PokerHand implements Hand {
-	private List<PlayingCard> hand = new ArrayList<>();
-	private FigureAnalyzer	figureAnalyzer = new FigureAnalyzer(this);
+public class PokerHand implements IHand {
+	private List<ICard> hand = new ArrayList<>();
+	private IFigureAnalyzer	figureAnalyzer = new PokerFigureAnalyzer(this);
 	
-	public PokerHand(List<PlayingCard> cards) {
+	public PokerHand(List<ICard> cards) {
 		this.hand = cards;
 		sort();
 	}
 
 	@Override
-	public FigureAnalyzer getFigureAnalyzer() {
+	public IFigureAnalyzer getFigureAnalyzer() {
 		return figureAnalyzer;
 	}
 
-	public List<PlayingCard> getHand() {
+	public List<ICard> getCardsList() {
 		return hand;
 	}
 
 	public String toString() {
-		String result = "";
-		for (PlayingCard card : hand)
-			result += card + " ";
+		String result = hand.get(0).toString();
+		for (int i = 1; i < hand.size(); i++)
+			result +=  " " + hand.get(i).toString();
 		return result;
 	}
 
@@ -33,11 +34,11 @@ public class PokerHand implements Hand {
 
 	@Override
 	public int getCardValue(int index) {
-		return getHand().get(index).getValue();
+		return getCardsList().get(index).getValue();
 	}
 
 	@Override
-	public int getLastCard() {
+	public int getLastCardValue() {
 		return hand.get(hand.size()-1).getValue();
 	}
 
@@ -50,13 +51,12 @@ public class PokerHand implements Hand {
 	public List<Integer> getCardsValues() {
 		List<Integer> result = new ArrayList<Integer>();
 		
-		for(Card card : hand)
+		for(ICard card : hand)
 			result.add(card.getValue());
 		
 		return result;
 	}
 	
-
 	@Override
 	public void clear() {
 		hand.clear();
@@ -64,7 +64,7 @@ public class PokerHand implements Hand {
 	}
 	
 	@Override
-	public void setFigureAnalyzer(FigureAnalyzer figureAnalyzer) {
+	public void setFigureAnalyzer(IFigureAnalyzer figureAnalyzer) {
 		this.figureAnalyzer = figureAnalyzer;
 	}
 }
