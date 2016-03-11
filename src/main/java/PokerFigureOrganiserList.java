@@ -6,7 +6,7 @@ public class PokerFigureOrganiserList implements IFiguresOrganiserList{
 
 	@Override
 	public int getFrequencyOfLastElement() {
-		return figuresList.get(figuresList.size()-1).getCardFrequency(); 
+		return figuresList.get(size()-1).getCardFrequency(); 
 	}
 
 	@Override

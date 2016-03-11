@@ -154,16 +154,15 @@ public class PokerHandTest {
 	@Test
 	public void shouldSetFigureAnalyzer() {		
 		// given
-		testList.add(new PlayingCard(2, Color.C));
-		testList.add(new PlayingCard(4, Color.H));
 		testHand = new PokerHand(testList);
-		IFigureAnalyzer newFigureAnalyzer = new PokerFigureAnalyzer(testHand);
-		IFigureAnalyzer oldFigureAnalyzer = testHand.getFigureAnalyzer();
+		IHand testHand2 = new PokerHand(testList);
+		IFigureAnalyzer newFigureAnalyzer = new PokerFigureAnalyzer(testHand2);
+	    IFigureAnalyzer oldFigureAnalyzer = testHand.getFigureAnalyzer();
 		
 		// when
 		testHand.setFigureAnalyzer(newFigureAnalyzer);
 		
 		// then
-		assertFalse(testHand.getFigureAnalyzer() == oldFigureAnalyzer);
+		assertFalse(testHand.getFigureAnalyzer().equals(oldFigureAnalyzer));
 		}
 }

@@ -5,14 +5,33 @@ public class PokerGame implements IPoker {
 	private IHand player, enemy;
 	private int playerStrength, enemyStrength;
 	int i = 0;
+
 	public PokerGame(String filename) {
 		fileReader = new PokerFileReader(filename);
 
 	}
 
+	public IHand getPlayer() {
+		return player;
+	}
+
+	public IHand getEnemy() {
+		return enemy;
+	}
+
 	@Override
 	public boolean isInput() {
 		return fileReader.nextLine();
+	}
+
+	@Override
+	public int getPlayerStrength() {
+		return playerStrength;
+	}
+
+	@Override
+	public int getEnemyStrength() {
+		return enemyStrength;
 	}
 
 	@Override
@@ -23,8 +42,8 @@ public class PokerGame implements IPoker {
 
 	@Override
 	public void calculatePlayersStrength() {
-		playerStrength = player.getFigureAnalyzer().getFigure(player).getFigureValue();
-		enemyStrength = enemy.getFigureAnalyzer().getFigure(enemy).getFigureValue();
+		playerStrength = player.getFigureAnalyzer().getFigure().getFigureValue();
+		enemyStrength = enemy.getFigureAnalyzer().getFigure().getFigureValue();
 	}
 
 	@Override
@@ -64,5 +83,5 @@ public class PokerGame implements IPoker {
 		poker.closeFile();
 		System.out.println("Points: " + poker.getPoints());
 	}
-	
+
 }

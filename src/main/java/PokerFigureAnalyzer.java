@@ -7,6 +7,7 @@ public class PokerFigureAnalyzer implements IFigureAnalyzer {
 
 	public PokerFigureAnalyzer(IHand hand) {
 		this.hand = hand;
+		hand.setFigureAnalyzer(this);
 	}
 
 	// ---------------------------------------------------------
@@ -17,9 +18,8 @@ public class PokerFigureAnalyzer implements IFigureAnalyzer {
 	}
 
 	@Override
-	public Figure getFigure(IHand hand) {
-		MultipleCardAnalyzer.anayzeMultipleCards(hand, figureList);
-		hand.setFigureAnalyzer(this);
+	public Figure getFigure() {
+		figureList = MultipleCardAnalyzer.anayzeFrequencies(hand);
 
 		if (isPoker()) {
 			if (isRoyalPoker())

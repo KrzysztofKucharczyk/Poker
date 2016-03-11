@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class DrawResolver {
 
 	public static int resolve(IHand player, IHand enemy) {
-		FigureName figureName = player.getFigureAnalyzer().getFigure(player).getFigureName();
+		FigureName figureName = player.getFigureAnalyzer().getFigure().getFigureName();
 
 		if (figureName == FigureName.ROYAL_FLUSH)
 			return 0;
