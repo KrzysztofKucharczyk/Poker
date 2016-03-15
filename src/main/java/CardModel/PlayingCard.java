@@ -1,24 +1,24 @@
 package CardModel;
 public class PlayingCard implements ICard, Comparable<ICard>{
 
-	private CardValue value;
-	private CardColor color;
+	private int value;
+	private Color color;
 	
 	// --------------------------------------------
 	
 	public PlayingCard(int value, Color color) {
-		this.value = new CardValue(value); 
-		this.color = new CardColor(color);
+		this.value = value; 
+		this.color = color;
 	}
 
 	// --------------------------------------------
 	
 	public int getValue() {
-		return value.getValue();
+		return value;
 	}
 
 	public Color getColor() {
-		return color.getColor();
+		return color;
 	}
 
 	public String toString() {
