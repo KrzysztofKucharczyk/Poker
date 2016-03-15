@@ -1,14 +1,17 @@
 package Figure.FigureAnalyzer;
+import java.util.ArrayList;
+import java.util.List;
+
 import Figure.FigureAnalyzer.MultipleCardAnalyzer.MultipleCardAnalyzer;
-import Figure.FiguresOrganiserList.IFiguresOrganiserList;
-import Figure.FiguresOrganiserList.PokerFigureOrganiserList;
+import Figure.FigureOrganiser.IFiguresOrganiser;
+import Figure.FigureOrganiser.PokerFigureOrganiser;
 import Figure.Model.Figure;
 import Figure.Model.FigureName;
 import Hand.IHand;
 
 public class PokerFigureAnalyzer implements IFigureAnalyzer {
 
-	private IFiguresOrganiserList figureList = new PokerFigureOrganiserList();
+	private List<IFiguresOrganiser> figureList = new ArrayList<>();
 	private IHand hand;
 
 	// ---------------------------------------------------------
@@ -21,10 +24,15 @@ public class PokerFigureAnalyzer implements IFigureAnalyzer {
 	// ---------------------------------------------------------
 	
 	@Override
-	public IFiguresOrganiserList getFigureOrganisersList() {
+	public List<IFiguresOrganiser> getFigureOrganisers() {
 		return figureList;
 	}
 
+	@Override
+	public void addFigure(IFiguresOrganiser newFigureOrganiser) {
+		figureList.add((PokerFigureOrganiser) newFigureOrganiser);
+	}
+	
 	@Override
 	public Figure getFigure() {
 		figureList = MultipleCardAnalyzer.anayzeFrequencies(hand);
@@ -58,17 +66,17 @@ public class PokerFigureAnalyzer implements IFigureAnalyzer {
 		else
 			return new Figure(FigureName.HIGH_CARD, 1);
 	}
-
+	
 	private boolean isPair() {
-		return figureList.getFrequencyOfLastElement() == 2;
+		return figureList.get(figureList.size()-1).getCardFrequency() == 2;
 	}
 
 	private boolean areTwoPairs() {
-		return (figureList.getCardValuesOfLastElement().size() == 2);
+		return (figureList.get(figureList.size()-1).getCardValues().size() == 2);
 	}
 
 	private boolean areThreeOfAKind() {
-		return figureList.getFrequencyOfLastElement() == 3;
+		return figureList.get(figureList.size()-1).getCardFrequency() == 3;
 	}
 
 	private boolean isStraight() {
@@ -87,11 +95,11 @@ public class PokerFigureAnalyzer implements IFigureAnalyzer {
 	}
 
 	private boolean isFull() {
-		return (figureList.size() == 2) && (figureList.getCardFrequency(0) == 2 && figureList.getCardFrequency(1) == 3);
+		return (figureList.size() == 2) && (figureList.get(0).getCardFrequency() == 2 && figureList.get(1).getCardFrequency() == 3);
 	}
 
 	private boolean isFourOfAKind() {
-		return (figureList.getFrequencyOfLastElement() == 4);
+		return (figureList.get(figureList.size()-1).getCardFrequency() == 4);
 	}
 
 	private boolean isPoker() {

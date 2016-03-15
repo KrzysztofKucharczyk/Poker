@@ -6,7 +6,6 @@ import java.util.List;
 
 import Figure.FigureOrganiser.IFiguresOrganiser;
 import Figure.FigureOrganiser.PokerFigureOrganiser;
-import Figure.FiguresOrganiserList.IFiguresOrganiserList;
 import Hand.IHand;
 
 public class MultipleCardAnalyzer {
@@ -21,7 +20,7 @@ public class MultipleCardAnalyzer {
 		return frequencies;
 	}
 
-	public static IFiguresOrganiserList anayzeFrequencies(IHand hand) {
+	public static List<IFiguresOrganiser> anayzeFrequencies(IHand hand) {
 
 		List<Integer> frequencies = (ArrayList<Integer>) getFrequenciesOfCardValues(hand);
 
@@ -29,8 +28,7 @@ public class MultipleCardAnalyzer {
 			isAnythingAdded = false;
 			isOnListInFigureOrganiser = false;
 
-			for (IFiguresOrganiser figureOrganiser : hand.getFigureAnalyzer().getFigureOrganisersList()
-					.getFiguresList()) {
+			for (IFiguresOrganiser figureOrganiser : hand.getFigureAnalyzer().getFigureOrganisers()) {
 
 				if (frequencies.get(i) == figureOrganiser.getCardFrequency()) {
 
@@ -49,13 +47,12 @@ public class MultipleCardAnalyzer {
 				}
 			}
 			if (!isAnythingAdded)
-				hand.getFigureAnalyzer().getFigureOrganisersList()
-						.addFigure(new PokerFigureOrganiser(frequencies.get(i), hand.getCardValue(i)));
+				hand.getFigureAnalyzer().addFigure(new PokerFigureOrganiser(frequencies.get(i), hand.getCardValue(i)));
 
 		}
 
-		Collections.sort(hand.getFigureAnalyzer().getFigureOrganisersList().getFiguresList());
-		return hand.getFigureAnalyzer().getFigureOrganisersList();
+		Collections.sort(hand.getFigureAnalyzer().getFigureOrganisers());
+		return hand.getFigureAnalyzer().getFigureOrganisers();
 	}
 
 }

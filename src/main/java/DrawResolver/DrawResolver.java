@@ -99,11 +99,11 @@ public class DrawResolver {
 		int hand1Value = 0;
 		int hand2Value = 0;
 
-		for (IFiguresOrganiser figureOrganiser : player.getFigureAnalyzer().getFigureOrganisersList().getFiguresList())
+		for (IFiguresOrganiser figureOrganiser : player.getFigureAnalyzer().getFigureOrganisers())
 			if (figureOrganiser.getCardFrequency() == 2)
 				hand1Value = ((ArrayList<Integer>) figureOrganiser.getCardValues()).get(0);
 
-		for (IFiguresOrganiser figureOrganiser : enemy.getFigureAnalyzer().getFigureOrganisersList().getFiguresList())
+		for (IFiguresOrganiser figureOrganiser : enemy.getFigureAnalyzer().getFigureOrganisers())
 			if (figureOrganiser.getCardFrequency() == 2)
 				hand2Value = ((ArrayList<Integer>) figureOrganiser.getCardValues()).get(0);
 

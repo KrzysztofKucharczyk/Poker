@@ -76,7 +76,7 @@ public class PokerHand implements IHand {
 
 	@Override
 	public int getCardValueFromGivenFigureOrganiser(int figureOrganiserNumber, int argument) {
-		return this.getFigureAnalyzer().getFigureOrganisersList().getFiguresList().get(figureOrganiserNumber)
+		return this.getFigureAnalyzer().getFigureOrganisers().get(figureOrganiserNumber)
 				.getCardValues().get(argument);
 	}
 }

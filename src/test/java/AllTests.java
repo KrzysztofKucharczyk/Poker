@@ -5,9 +5,7 @@ import org.junit.runners.Suite.SuiteClasses;
 import CardTest.PlayingCardTest;
 import CounterTest.WinCounterTest;
 import FigureAnalyzerTest.PokerFigureAnalyzerTest;
-import FigureAnalyzerTest.MultipleCardAnalyzerTest.MultipleCardAnalyzerTest;
 import FigureTest.FigureTest;
-import FigureTest.PokerFigureOrganiserListTest;
 import FigureTest.PokerFigureOrganiserTest;
 import FileReaderTest.PokerFileReaderTest;
 import GameTest.PokerGameTest;
@@ -18,10 +16,9 @@ import HandTest.PokerHandTest;
 	PlayingCardTest.class,
 	WinCounterTest.class,
 	PokerFigureAnalyzerTest.class,
-	MultipleCardAnalyzerTest.class,
+	//MultipleCardAnalyzerTest.class,
 	FigureTest.class,
 	PokerFigureOrganiserTest.class,
-	PokerFigureOrganiserListTest.class,
 	PokerFileReaderTest.class,
 	PokerGameTest.class,
 	PokerHandTest.class

@@ -1,11 +1,15 @@
 package Figure.FigureAnalyzer;
 
-import Figure.FiguresOrganiserList.IFiguresOrganiserList;
+import java.util.List;
+
+import Figure.FigureOrganiser.IFiguresOrganiser;
 import Figure.Model.Figure;
 
 public interface IFigureAnalyzer {
-	
-	public IFiguresOrganiserList getFigureOrganisersList();
 
 	public Figure getFigure();
+
+	public List<IFiguresOrganiser> getFigureOrganisers();
+
+	public void addFigure(IFiguresOrganiser newFigureOrganiser);
 }

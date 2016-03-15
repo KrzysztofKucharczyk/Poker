@@ -47,7 +47,7 @@ public class PokerFileReader implements IFileReader {
 		
 	}
 	
-	public int convertValueString(String value) {
+	private int convertValueString(String value) {
 		if (value.equals("T"))
 			return 10;
 		else if (value.equals("J"))
@@ -63,7 +63,7 @@ public class PokerFileReader implements IFileReader {
 
 	}
 	
-	public Color convertColorString(String color) {
+	private Color convertColorString(String color) {
 		if (color.equals("D"))
 			return Color.D;
 		else if (color.equals("S"))
