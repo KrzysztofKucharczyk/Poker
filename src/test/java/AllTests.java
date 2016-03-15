@@ -2,8 +2,6 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
-import CardTest.CardColorTest;
-import CardTest.CardValueTest;
 import CardTest.PlayingCardTest;
 import CounterTest.WinCounterTest;
 import FigureAnalyzerTest.PokerFigureAnalyzerTest;
@@ -17,8 +15,6 @@ import HandTest.PokerHandTest;
 
 @RunWith(Suite.class)
 @SuiteClasses({
-	CardColorTest.class,
-	CardValueTest.class,
 	PlayingCardTest.class,
 	WinCounterTest.class,
 	PokerFigureAnalyzerTest.class,
@@ -30,6 +26,7 @@ import HandTest.PokerHandTest;
 	PokerGameTest.class,
 	PokerHandTest.class
 })
+
 public class AllTests {
 	
 }
