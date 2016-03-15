@@ -60,15 +60,15 @@ public class PokerFigureAnalyzer implements IFigureAnalyzer {
 	}
 
 	private boolean isPair() {
-		return figureList.getFrequencyOfLastElement() == 2 ? true : false;
+		return figureList.getFrequencyOfLastElement() == 2;
 	}
 
 	private boolean areTwoPairs() {
-		return (figureList.getCardValuesOfLastElement().size() == 2) ? true : false;
+		return (figureList.getCardValuesOfLastElement().size() == 2);
 	}
 
 	private boolean areThreeOfAKind() {
-		return figureList.getFrequencyOfLastElement() == 3 ? true : false;
+		return figureList.getFrequencyOfLastElement() == 3;
 	}
 
 	private boolean isStraight() {
@@ -87,16 +87,15 @@ public class PokerFigureAnalyzer implements IFigureAnalyzer {
 	}
 
 	private boolean isFull() {
-		return (figureList.size() == 2) && (figureList.getCardFrequency(0) == 2 && figureList.getCardFrequency(1) == 3)
-				? true : false;
+		return (figureList.size() == 2) && (figureList.getCardFrequency(0) == 2 && figureList.getCardFrequency(1) == 3);
 	}
 
 	private boolean isFourOfAKind() {
-		return (figureList.getFrequencyOfLastElement() == 4) ? true : false;
+		return (figureList.getFrequencyOfLastElement() == 4);
 	}
 
 	private boolean isPoker() {
-		return isStraight() && isFlush() ? true : false;
+		return isStraight() && isFlush();
 	}
 
 	private boolean isRoyalPoker() {
