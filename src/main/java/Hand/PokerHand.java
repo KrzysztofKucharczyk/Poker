@@ -8,6 +8,8 @@ import CardModel.Color;
 import CardModel.ICard;
 import Figure.FigureAnalyzer.IFigureAnalyzer;
 import Figure.FigureAnalyzer.PokerFigureAnalyzer;
+import Figure.FigureOrganiser.IFiguresOrganiser;
+import Figure.Model.IFigure;
 
 public class PokerHand implements IHand {
 	private List<ICard> hand = new ArrayList<>();
@@ -78,5 +80,15 @@ public class PokerHand implements IHand {
 	public int getCardValueFromGivenFigureOrganiser(int figureOrganiserNumber, int argument) {
 		return this.getFigureAnalyzer().getFigureOrganisers().get(figureOrganiserNumber)
 				.getCardValues().get(argument);
+	}
+
+	@Override
+	public List<IFiguresOrganiser> getFigureOrganisers() {
+		return getFigureAnalyzer().getFigureOrganisers();
+	}
+
+	@Override
+	public IFigure getFigure() {
+		return getFigureAnalyzer().getFigure();
 	}
 }

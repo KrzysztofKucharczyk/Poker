@@ -21,7 +21,7 @@ public class PokerFileReaderTest {
 	
 	@Test
 	public void getNewhand() {
-		IFileReader fileReader = new PokerFileReader("C:\\Users\\KRKUCHAR\\workspace\\Poker\\src\\data\\test.txt");
+		IFileReader fileReader = new PokerFileReader("src\\data\\test.txt");
 		testHand = fileReader.getNewHand();
 
 		List<ICard> cardList = new ArrayList<>();
@@ -36,7 +36,7 @@ public class PokerFileReaderTest {
 
 	@Test
 	public void getInformationIfThereIsANewLine() {
-		IFileReader fileReader = new PokerFileReader("C:\\Users\\KRKUCHAR\\workspace\\Poker\\src\\data\\test.txt");
+		IFileReader fileReader = new PokerFileReader("src\\data\\test.txt");
 		
 
 		for (int i = 0; i < 3; i++) {

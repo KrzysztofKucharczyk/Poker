@@ -50,8 +50,8 @@ public class PokerGame implements IPoker {
 
 	@Override
 	public void calculatePlayersStrength() {
-		playerStrength = player.getFigureAnalyzer().getFigure().getFigureValue();
-		enemyStrength = enemy.getFigureAnalyzer().getFigure().getFigureValue();
+		playerStrength = player.getFigure().getFigureValue();
+		enemyStrength = enemy.getFigure().getFigureValue();
 	}
 
 	@Override
@@ -79,7 +79,7 @@ public class PokerGame implements IPoker {
 	}
 
 	public static void main(String[] args) {
-		PokerGame poker = new PokerGame("C:\\Users\\KRKUCHAR\\workspace\\Poker\\src\\data\\poker.txt");
+		PokerGame poker = new PokerGame("src\\data\\poker.txt");
 
 		while (poker.isInput()) {
 			poker.getNewHandsForPlayers();

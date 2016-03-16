@@ -5,6 +5,8 @@ import java.util.List;
 import CardModel.Color;
 import CardModel.ICard;
 import Figure.FigureAnalyzer.IFigureAnalyzer;
+import Figure.FigureOrganiser.IFiguresOrganiser;
+import Figure.Model.IFigure;
 
 public interface IHand {
 
@@ -21,6 +23,10 @@ public interface IHand {
 	public void clear();
 	
 	public IFigureAnalyzer getFigureAnalyzer();
+	
+	public List<IFiguresOrganiser>  getFigureOrganisers();
+	
+	public IFigure getFigure();
 	
 	public void setFigureAnalyzer(IFigureAnalyzer figureAnalyzer);
 
