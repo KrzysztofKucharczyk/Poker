@@ -43,7 +43,7 @@ public class MultipleCardAnalyzerTest {
 		assertTrue(hand.getFigureAnalyzer().getFigureOrganisers().get(1).getCardFrequency() == 3);
 
 		// Check repeated values
-		assertTrue(hand.getLastCardValue() == 10);
+		assertTrue(hand.getHighestValue() == 10);
 		assertTrue(
 				hand.getCardValueFromGivenFigureOrganiser(0, 0) == 2);
 	}

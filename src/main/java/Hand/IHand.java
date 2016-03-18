@@ -18,11 +18,7 @@ public interface IHand {
 	
 	public Color getCardColor(int index);
 	
-	// rename highest
-	public int getLastCardValue();
-
-	// Try to not use it
-	public void clear();
+	public int getHighestValue();
 	
 	public IFigureAnalyzer getFigureAnalyzer();
 	

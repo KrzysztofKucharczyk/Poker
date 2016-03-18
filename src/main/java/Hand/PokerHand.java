@@ -12,14 +12,11 @@ import Figure.FigureOrganiser.IFiguresOrganiser;
 import Figure.Model.IFigure;
 
 public class PokerHand implements IHand {
-	// final
-	private List<ICard> hand = new ArrayList<>();
+	private final List<ICard> hand;
 	private IFigureAnalyzer figureAnalyzer = new PokerFigureAnalyzer(this);
 
 	public PokerHand(List<ICard> cards) {
-		this.hand = cards;
-		sort();
-		//Collections.unmodifiableList(list)
+		this.hand = Collections.unmodifiableList(sort(cards));
 	}
 
 	@Override
@@ -38,8 +35,9 @@ public class PokerHand implements IHand {
 		return result;
 	}
 
-	private void sort() {
-		Collections.sort(hand);
+	private List<ICard> sort(List<ICard> cards) {
+		Collections.sort(cards);
+		return cards;
 	}
 
 	@Override
@@ -48,7 +46,7 @@ public class PokerHand implements IHand {
 	}
 
 	@Override
-	public int getLastCardValue() {
+	public int getHighestValue() {
 		return hand.get(hand.size() - 1).getValue();
 	}
 
@@ -65,12 +63,6 @@ public class PokerHand implements IHand {
 			result.add(card.getValue());
 
 		return result;
-	}
-
-	@Override
-	public void clear() {
-		hand.clear();
-
 	}
 
 	@Override

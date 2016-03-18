@@ -55,20 +55,6 @@ public class PokerGameTest {
 	}
 
 	@Test
-	public void shouldClearhands() {
-		// given
-		pokerGame = new PokerGame("C:\\Users\\KRKUCHAR\\workspace\\Poker\\src\\data\\test.txt");
-		pokerGame.getNewHandsForPlayers();
-		
-		// when
-		pokerGame.cleanAfterMatch();
-		
-		// then
-		assertTrue(pokerGame.getPlayer().getCardsList().isEmpty());
-		assertTrue(pokerGame.getEnemy().getCardsList().isEmpty());
-	}
-	
-	@Test
 	public void shouldCheckIfThereIsSomethingToRead() {
 		// given
 		pokerGame = new PokerGame("C:\\Users\\KRKUCHAR\\workspace\\Poker\\src\\data\\test.txt");

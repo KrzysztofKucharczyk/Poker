@@ -64,12 +64,6 @@ public class PokerGame implements IPoker {
 	}
 
 	@Override
-	public void cleanAfterMatch() {
-		player.clear();
-		enemy.clear();
-	}
-
-	@Override
 	public int getPoints() {
 		return winCounter.getPoints();
 	}
@@ -85,7 +79,6 @@ public class PokerGame implements IPoker {
 			poker.getNewHandsForPlayers();
 			poker.calculatePlayersStrength();
 			poker.findWinner();
-			poker.cleanAfterMatch();
 
 		}
 		poker.closeFile();

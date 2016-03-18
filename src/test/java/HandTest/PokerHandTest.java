@@ -32,7 +32,7 @@ public class PokerHandTest {
 		testHand = new PokerHand(testList);
 		// then
 		assertNotNull(testHand);
-		assertTrue(testHand.getLastCardValue() == 10);
+		assertTrue(testHand.getHighestValue() == 10);
 		assertTrue(testHand.getCardColor(0).equals(Color.S));
 	}
 	
@@ -111,7 +111,7 @@ public class PokerHandTest {
 		testHand = new PokerHand(testList);
 		
 		// when
-		int result = testHand.getLastCardValue();
+		int result = testHand.getHighestValue();
 		
 		// then
 		assertTrue(result == 10);
@@ -147,20 +147,6 @@ public class PokerHandTest {
 		assertTrue(result.get(2) == 10);
 	}
 	
-	@Test
-	public void shouldClearHand() {		
-		// given
-		testList.add(new PlayingCard(2, Color.C));
-		testList.add(new PlayingCard(4, Color.H));
-		testHand = new PokerHand(testList);
-		
-		// when
-		testHand.clear();
-		
-		// then
-		assertTrue(testHand.getCardsList().isEmpty());
-	}
-
 	@Test
 	public void shouldSetFigureAnalyzer() {		
 		// given
