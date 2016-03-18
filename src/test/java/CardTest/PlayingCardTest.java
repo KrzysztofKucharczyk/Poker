@@ -87,7 +87,7 @@ public class PlayingCardTest {
 		int result = testCard1.compareTo(testCard2);
 		
 		// then
-		assertTrue(result == 1);
+		assertTrue(result > 0);
 	}
 	
 		

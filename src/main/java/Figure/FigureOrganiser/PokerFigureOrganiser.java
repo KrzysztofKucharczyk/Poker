@@ -2,6 +2,7 @@ package Figure.FigureOrganiser;
 import java.util.ArrayList;
 import java.util.List;
 
+// RENAME!!! Group card?
 public class PokerFigureOrganiser implements IFiguresOrganiser {
 	private int frequency;
 	private List<Integer> cardValues = new ArrayList<Integer>();
@@ -27,10 +28,7 @@ public class PokerFigureOrganiser implements IFiguresOrganiser {
 
 	@Override
 	public String toString() {
-		String result = new String();
-
-		result = "[" + frequency + "," + cardValues + "]\n";
-		return result;
+		return "[" + frequency + "," + cardValues + "]\n";
 	}
 
 	@Override

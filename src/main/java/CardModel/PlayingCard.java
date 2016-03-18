@@ -22,12 +22,10 @@ public class PlayingCard implements ICard, Comparable<ICard>{
 	}
 
 	public String toString() {
-		return new String(value + "" + color);
+		return value + "" + color;
 	}
 
 	public int compareTo(ICard other) {
-		if(getValue() > other.getValue()) return 1;
-		else if(getValue() < other.getValue()) return -1;
-		else return 0;
+		return getValue() - other.getValue();
 	}
 }

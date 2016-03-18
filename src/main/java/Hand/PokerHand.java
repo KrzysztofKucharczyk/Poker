@@ -12,12 +12,14 @@ import Figure.FigureOrganiser.IFiguresOrganiser;
 import Figure.Model.IFigure;
 
 public class PokerHand implements IHand {
+	// final
 	private List<ICard> hand = new ArrayList<>();
 	private IFigureAnalyzer figureAnalyzer = new PokerFigureAnalyzer(this);
 
 	public PokerHand(List<ICard> cards) {
 		this.hand = cards;
 		sort();
+		//Collections.unmodifiableList(list)
 	}
 
 	@Override
