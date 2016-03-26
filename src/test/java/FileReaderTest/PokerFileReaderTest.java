@@ -1,10 +1,13 @@
 package FileReaderTest;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import CardModel.Color;
@@ -18,10 +21,19 @@ import Hand.PokerHand;
 public class PokerFileReaderTest {
 
 	private IHand testHand;
+	private IFileReader fileReader;
+	
+	@Before
+	public void before() {
+		String testFilePath = "src/data/test.txt";
+		if(System.getProperty("os.name").equals("Windows"))
+			testFilePath.replace("/", "\\");
+			
+		fileReader = new PokerFileReader(testFilePath);
+	}
 	
 	@Test
 	public void getNewhand() {
-		IFileReader fileReader = new PokerFileReader("src\\data\\test.txt");
 		testHand = fileReader.getNewHand();
 
 		List<ICard> cardList = new ArrayList<>();
@@ -36,9 +48,6 @@ public class PokerFileReaderTest {
 
 	@Test
 	public void getInformationIfThereIsANewLine() {
-		IFileReader fileReader = new PokerFileReader("src\\data\\test.txt");
-		
-
 		for (int i = 0; i < 3; i++) {
 			testHand = fileReader.getNewHand();
 			assertTrue(fileReader.nextLine());

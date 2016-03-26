@@ -1,7 +1,9 @@
 package GameTest;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import Poker.IPoker;
@@ -11,10 +13,20 @@ public class PokerGameTest {
 
 	private IPoker pokerGame;
 
+	@Before
+	public void before() {
+		String testFilePath = "src/data/test.txt";
+		String[] operationSystemInformation = System.getProperty("os.name").split(" ");
+		
+		if(operationSystemInformation.length == 2 && operationSystemInformation[0].equals("Windows"))
+			testFilePath.replace("/", "\\");
+			
+		pokerGame = new PokerGame(testFilePath);
+	}
+	
 	@Test
 	public void shouldSupplyHandsWithData() {
 		// when
-		pokerGame = new PokerGame("C:\\Users\\KRKUCHAR\\workspace\\Poker\\src\\data\\test.txt");
 		pokerGame.getNewHandsForPlayers();
 
 		// then
@@ -28,7 +40,6 @@ public class PokerGameTest {
 	@Test
 	public void shouldCalculateTheStrengthOfEveryHand() {
 		// given
-		pokerGame = new PokerGame("C:\\Users\\KRKUCHAR\\workspace\\Poker\\src\\data\\test.txt");
 		pokerGame.getNewHandsForPlayers();
 
 		// when
@@ -42,7 +53,6 @@ public class PokerGameTest {
 	@Test
 	public void shouldDecideWhoIsTheWinner() {
 		// given
-		pokerGame = new PokerGame("C:\\Users\\KRKUCHAR\\workspace\\Poker\\src\\data\\test.txt");
 		pokerGame.getNewHandsForPlayers();
 		pokerGame.getNewHandsForPlayers();
 		pokerGame.calculatePlayersStrength();
@@ -56,9 +66,6 @@ public class PokerGameTest {
 
 	@Test
 	public void shouldCheckIfThereIsSomethingToRead() {
-		// given
-		pokerGame = new PokerGame("C:\\Users\\KRKUCHAR\\workspace\\Poker\\src\\data\\test.txt");
-		
 		// when
 		pokerGame.getNewHandsForPlayers();
 		
