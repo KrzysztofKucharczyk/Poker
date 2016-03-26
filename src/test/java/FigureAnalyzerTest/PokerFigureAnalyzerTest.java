@@ -118,6 +118,25 @@ public class PokerFigureAnalyzerTest {
 	}
 	
 	@Test
+	public void shouldDetectSpecialCaseStraight() {
+		// given
+		cards.add(new PlayingCard(14, Color.H));
+		cards.add(new PlayingCard(4, Color.S));
+		cards.add(new PlayingCard(5, Color.C));
+		cards.add(new PlayingCard(2, Color.D));
+		cards.add(new PlayingCard(3, Color.H));
+		IHand hand = new PokerHand(cards);
+		figureAnalyzer = new PokerFigureAnalyzer(hand);
+
+		// when
+		Figure result = figureAnalyzer.getFigure();
+
+		// then
+		assertTrue(result.getFigureName() == FigureName.STRAIGHT);
+
+	}
+	
+	@Test
 	public void shouldDetectStraight() {
 		// given
 		cards.add(new PlayingCard(7, Color.H));
@@ -130,11 +149,17 @@ public class PokerFigureAnalyzerTest {
 
 		// when
 		Figure result = figureAnalyzer.getFigure();
-
+		
 		// then
 		assertTrue(result.getFigureName() == FigureName.STRAIGHT);
 
 	}
+	
+	/*
+	 * Test responsible for detecting card figure straight in 
+	 * special case, which is: AX, 2X, 3X, 4X, 5X (X - color).
+	 * In this case Ace can be treated as card preceding 2.
+	 */
 	
 	@Test
 	public void shouldDetectThreeOfAKind() {
@@ -206,7 +231,7 @@ public class PokerFigureAnalyzerTest {
 
 		// when
 		Figure result = figureAnalyzer.getFigure();
-
+		
 		// then
 		assertTrue(result.getFigureName() == FigureName.HIGH_CARD);
 

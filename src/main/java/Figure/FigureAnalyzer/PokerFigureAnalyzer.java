@@ -1,4 +1,5 @@
 package Figure.FigureAnalyzer;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +23,7 @@ public class PokerFigureAnalyzer implements IFigureAnalyzer {
 	}
 
 	// ---------------------------------------------------------
-	
+
 	@Override
 	public List<IFiguresOrganiser> getFigureOrganisers() {
 		return figureList;
@@ -32,7 +33,7 @@ public class PokerFigureAnalyzer implements IFigureAnalyzer {
 	public void addFigure(IFiguresOrganiser newFigureOrganiser) {
 		figureList.add((PokerFigureOrganiser) newFigureOrganiser);
 	}
-	
+
 	@Override
 	public Figure getFigure() {
 		figureList = MultipleCardAnalyzer.anayzeFrequencies(hand);
@@ -66,25 +67,41 @@ public class PokerFigureAnalyzer implements IFigureAnalyzer {
 		else
 			return new Figure(FigureName.HIGH_CARD, 1);
 	}
-	
+
 	private boolean isPair() {
-		return figureList.get(figureList.size()-1).getCardFrequency() == 2;
+		return figureList.get(figureList.size() - 1).getCardFrequency() == 2;
 	}
 
 	private boolean areTwoPairs() {
-		return (figureList.get(figureList.size()-1).getCardValues().size() == 2);
+		return (figureList.get(figureList.size() - 1).getCardValues().size() == 2);
 	}
 
 	private boolean areThreeOfAKind() {
-		return figureList.get(figureList.size()-1).getCardFrequency() == 3;
+		return figureList.get(figureList.size() - 1).getCardFrequency() == 3;
 	}
 
 	private boolean isStraight() {
-		for (int i = 1; i < hand.getCardsList().size(); i++)
-			if (hand.getCardValue(i - 1) + 1 != (hand.getCardValue(i)))
-				return false;
+		if (!specialStraightCase())
+			for (int i = 1; i < hand.getCardsList().size(); i++)
+				if (hand.getCardValue(i - 1) + 1 != (hand.getCardValue(i)))
+					return false;
 
 		return true;
+	}
+
+	/*
+	 * Special case when straight can be created with following cards: 2X, 3X,
+	 * 4X, 5X, AX (X - colour).
+	 */
+	private boolean specialStraightCase() {
+		boolean specialCase = false;
+
+		if (hand.getHighestValue() == 14)
+			for (int i = 0; i < hand.getCardsList().size() - 1; i++)
+				if (hand.getCardValue(i) == i + 2)
+					specialCase = true;
+
+		return specialCase;
 	}
 
 	private boolean isFlush() {
@@ -95,11 +112,13 @@ public class PokerFigureAnalyzer implements IFigureAnalyzer {
 	}
 
 	private boolean isFull() {
-		return (figureList.size() == 2) && (figureList.get(0).getCardFrequency() == 2 && figureList.get(1).getCardFrequency() == 3);
+		return (figureList.size() == 2)
+				&& (figureList.get(0).getCardFrequency() == 2 && figureList
+						.get(1).getCardFrequency() == 3);
 	}
 
 	private boolean isFourOfAKind() {
-		return (figureList.get(figureList.size()-1).getCardFrequency() == 4);
+		return (figureList.get(figureList.size() - 1).getCardFrequency() == 4);
 	}
 
 	private boolean isPoker() {
