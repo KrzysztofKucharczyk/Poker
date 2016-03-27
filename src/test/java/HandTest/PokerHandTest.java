@@ -1,6 +1,7 @@
 package HandTest;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,11 +9,9 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import CardModel.Color;
 import CardModel.ICard;
 import CardModel.PlayingCard;
-import Figure.FigureAnalyzer.IFigureAnalyzer;
-import Figure.FigureAnalyzer.PokerFigureAnalyzer;
+import CardModel.Suite;
 import Hand.IHand;
 import Hand.PokerHand;
 
@@ -22,7 +21,7 @@ public class PokerHandTest {
 	
 	@Before
 	public void doBefore() {
-		testList.add(new PlayingCard(10, Color.S));
+		testList.add(new PlayingCard(10, Suite.S));
 		
 	}
 	
@@ -33,21 +32,9 @@ public class PokerHandTest {
 		// then
 		assertNotNull(testHand);
 		assertTrue(testHand.getHighestValue() == 10);
-		assertTrue(testHand.getCardColor(0).equals(Color.S));
+		assertTrue(testHand.getCardSuite(0).equals(Suite.S));
 	}
-	
-	@Test
-	public void shouldReturnFigureAnalyzer() {				
-		// given
-		testHand = new PokerHand(testList);
-		
-		// when
-		IFigureAnalyzer testFihureAnalyzer = testHand.getFigureAnalyzer();
-		
-		// then
-		assertNotNull(testFihureAnalyzer);
-	}
-	
+
 	@Test
 	public void shouldReturnCardsList() {
 		// given 
@@ -59,13 +46,13 @@ public class PokerHandTest {
 		// then
 		assertNotNull(result);
 		assertTrue(result.get(0).getValue() == 10);
-		assertTrue(result.get(0).getColor() == Color.S);
+		assertTrue(result.get(0).getSuite() == Suite.S);
 	}
 	
 	@Test
 	public void shouldReturnStringRepresentationOfTheHand() {		
 		// given
-		testList.add(new PlayingCard(2, Color.C));
+		testList.add(new PlayingCard(2, Suite.C));
 		testHand = new PokerHand(testList);
 		
 		// when
@@ -78,8 +65,8 @@ public class PokerHandTest {
 	@Test
 	public void shouldSortHand() {		
 		// given
-		testList.add(new PlayingCard(2, Color.C));
-		testList.add(new PlayingCard(4, Color.H));
+		testList.add(new PlayingCard(2, Suite.C));
+		testList.add(new PlayingCard(4, Suite.H));
 		testHand = new PokerHand(testList);
 		
 		// when
@@ -92,8 +79,8 @@ public class PokerHandTest {
 	@Test
 	public void shouldReturnCardValue() {		
 		// given
-		testList.add(new PlayingCard(2, Color.C));
-		testList.add(new PlayingCard(4, Color.H));
+		testList.add(new PlayingCard(2, Suite.C));
+		testList.add(new PlayingCard(4, Suite.H));
 		testHand = new PokerHand(testList);
 		
 		// when
@@ -106,8 +93,8 @@ public class PokerHandTest {
 	@Test
 	public void shouldReturnLastCardValue() {		
 		// given
-		testList.add(new PlayingCard(2, Color.C));
-		testList.add(new PlayingCard(4, Color.H));
+		testList.add(new PlayingCard(2, Suite.C));
+		testList.add(new PlayingCard(4, Suite.H));
 		testHand = new PokerHand(testList);
 		
 		// when
@@ -120,22 +107,22 @@ public class PokerHandTest {
 	@Test
 	public void shouldReturnCardColor() {		
 		// given
-		testList.add(new PlayingCard(2, Color.C));
-		testList.add(new PlayingCard(4, Color.H));
+		testList.add(new PlayingCard(2, Suite.C));
+		testList.add(new PlayingCard(4, Suite.H));
 		testHand = new PokerHand(testList);
 		
 		// when
-		Color result = testHand.getCardColor(2);
+		Suite result = testHand.getCardSuite(2);
 		
 		// then
-		assertTrue(result.equals(Color.S));
+		assertTrue(result.equals(Suite.S));
 	}
 	
 	@Test
 	public void shouldReturnAllCardsValues() {		
 		// given
-		testList.add(new PlayingCard(2, Color.C));
-		testList.add(new PlayingCard(4, Color.H));
+		testList.add(new PlayingCard(2, Suite.C));
+		testList.add(new PlayingCard(4, Suite.H));
 		testHand = new PokerHand(testList);
 		
 		// when
@@ -146,19 +133,4 @@ public class PokerHandTest {
 		assertTrue(result.get(1) == 4);
 		assertTrue(result.get(2) == 10);
 	}
-	
-	@Test
-	public void shouldSetFigureAnalyzer() {		
-		// given
-		testHand = new PokerHand(testList);
-		IHand testHand2 = new PokerHand(testList);
-		IFigureAnalyzer newFigureAnalyzer = new PokerFigureAnalyzer(testHand2);
-	    IFigureAnalyzer oldFigureAnalyzer = testHand.getFigureAnalyzer();
-		
-		// when
-		testHand.setFigureAnalyzer(newFigureAnalyzer);
-		
-		// then
-		assertFalse(testHand.getFigureAnalyzer().equals(oldFigureAnalyzer));
-		}
 }

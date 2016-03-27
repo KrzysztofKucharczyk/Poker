@@ -3,24 +3,25 @@ package Hand;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
-import CardModel.Color;
+import CardModel.Suite;
 import CardModel.ICard;
-import Figure.FigureAnalyzer.IFigureAnalyzer;
-import Figure.FigureAnalyzer.PokerFigureAnalyzer;
-import Figure.FigureOrganiser.IFiguresOrganiser;
-import Figure.Model.IFigure;
+import HandCategory.HandCategory;
+import HandCategory.HandCategoryMatcher.IHandCategoryMatcher;
+import HandCategory.HandCategoryMatcher.PokerHandCategoryMatcher;
 
 public class PokerHand implements IHand {
 	private final List<ICard> hand;
-	private IFigureAnalyzer figureAnalyzer = new PokerFigureAnalyzer(this);
+	private IHandCategoryMatcher figureAnalyzer = new PokerHandCategoryMatcher(this);
 
 	public PokerHand(List<ICard> cards) {
-		this.hand = Collections.unmodifiableList(sort(cards));
+		Collections.sort(cards);
+		this.hand = Collections.unmodifiableList(cards);
 	}
 
 	@Override
-	public IFigureAnalyzer getFigureAnalyzer() {
+	public IHandCategoryMatcher getFigureAnalyzer() {
 		return figureAnalyzer;
 	}
 
@@ -35,11 +36,6 @@ public class PokerHand implements IHand {
 		return result;
 	}
 
-	private List<ICard> sort(List<ICard> cards) {
-		Collections.sort(cards);
-		return cards;
-	}
-
 	@Override
 	public int getCardValue(int index) {
 		return getCardsList().get(index).getValue();
@@ -51,8 +47,8 @@ public class PokerHand implements IHand {
 	}
 
 	@Override
-	public Color getCardColor(int index) {
-		return hand.get(index).getColor();
+	public Suite getCardSuite(int index) {
+		return hand.get(index).getSuite();
 	}
 
 	@Override
@@ -66,23 +62,12 @@ public class PokerHand implements IHand {
 	}
 
 	@Override
-	public void setFigureAnalyzer(IFigureAnalyzer figureAnalyzer) {
-		this.figureAnalyzer = figureAnalyzer;
+	public Map<Integer, Integer> getMap() {
+		return getFigureAnalyzer().getMap();
 	}
 
 	@Override
-	public int getCardValueFromGivenFigureOrganiser(int figureOrganiserNumber, int argument) {
-		return this.getFigureAnalyzer().getFigureOrganisers().get(figureOrganiserNumber)
-				.getCardValues().get(argument);
-	}
-
-	@Override
-	public List<IFiguresOrganiser> getFigureOrganisers() {
-		return getFigureAnalyzer().getFigureOrganisers();
-	}
-
-	@Override
-	public IFigure getFigure() {
-		return getFigureAnalyzer().getFigure();
+	public HandCategory getHandCategory() {
+		return getFigureAnalyzer().getHandCategory();
 	}
 }

@@ -1,6 +1,6 @@
 package CardModel;
 
 
-public enum Color {
+public enum Suite {
 	H, S, D, C
 }

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import CardModel.Color;
+import CardModel.Suite;
 import CardModel.ICard;
 import CardModel.PlayingCard;
 import Hand.IHand;
@@ -14,6 +14,7 @@ import Hand.PokerHand;
 
 public class PokerFileReader implements IFileReader {
 	private Scanner scanner;
+	
 	public PokerFileReader(String filename) {
 		initializeFileReader(filename);
 	}
@@ -26,8 +27,8 @@ public class PokerFileReader implements IFileReader {
 		for (int i = 0; i < 5; i++) {
 			if ((line = scanner.next()) != null) {
 				int value = convertValueString(line.substring(0, 1));
-				Color color = convertColorString(line.substring(1, 2));
-				cards.add(new PlayingCard(value, color));
+				Suite suite = convertSuiteString(line.substring(1, 2));
+				cards.add(new PlayingCard(value, suite));
 			}
 		}
 		return new PokerHand(cards);
@@ -63,15 +64,15 @@ public class PokerFileReader implements IFileReader {
 
 	}
 	
-	private Color convertColorString(String color) {
-		if (color.equals("D"))
-			return Color.D;
-		else if (color.equals("S"))
-			return Color.S;
-		else if (color.equals("H"))
-			return Color.H;
+	private Suite convertSuiteString(String suite) {
+		if (suite.equals("D"))
+			return Suite.D;
+		else if (suite.equals("S"))
+			return Suite.S;
+		else if (suite.equals("H"))
+			return Suite.H;
 		else
-			return Color.C;
+			return Suite.C;
 	}
 	
 	@Override

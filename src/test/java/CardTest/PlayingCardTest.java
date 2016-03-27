@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import CardModel.Color;
+import CardModel.Suite;
 import CardModel.ICard;
 import CardModel.PlayingCard;
 
@@ -15,7 +15,7 @@ public class PlayingCardTest {
 
 		// given
 		int value = 12;
-		Color color = Color.D;
+		Suite color = Suite.D;
 		
 		// when
 		ICard testCard = new PlayingCard(value, color);
@@ -23,45 +23,15 @@ public class PlayingCardTest {
 		// then
 		assertNotNull(testCard);
 		assertTrue(testCard.getValue() == 12);
-		assertTrue(testCard.getColor() == Color.D);
+		assertTrue(testCard.getSuite() == Suite.D);
 	}
-	
-	@Test
-	public void shouldReturnCardValue() {
 
-		// given
-		int value = 5;
-		Color color = Color.D;
-		ICard testCard = new PlayingCard(value, color);
-		
-		// when
-		int result = testCard.getValue();
-		
-		// then
-		assertTrue(result == 5);
-	}
-	
-	@Test
-	public void shouldReturnCardColor() {
-
-		// given
-		int value = 7;
-		Color color = Color.H;
-		ICard testCard = new PlayingCard(value, color);
-		
-		// when
-		Color result = testCard.getColor();
-		
-		// then
-		assertTrue(result == Color.H);
-	}
-	
 	@Test
 	public void shouldReturnStringRepresentationOfACard() {
 
 		// given
 		int value = 14;
-		Color color = Color.C;
+		Suite color = Suite.C;
 		ICard testCard = new PlayingCard(value, color);
 		
 		// when
@@ -76,11 +46,11 @@ public class PlayingCardTest {
 
 		// given
 		int value = 14;
-		Color color = Color.C;
+		Suite color = Suite.C;
 		ICard testCard1 = new PlayingCard(value, color);
 		
 		value = 3;
-		color = Color.D;
+		color = Suite.D;
 		ICard testCard2 = new PlayingCard(value, color);
 		
 		// when
@@ -89,7 +59,4 @@ public class PlayingCardTest {
 		// then
 		assertTrue(result > 0);
 	}
-	
-		
-
 }

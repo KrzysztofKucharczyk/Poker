@@ -19,6 +19,5 @@ public interface IPoker {
 
 	public void findWinner();
 
-
 	public int getPoints();
 }

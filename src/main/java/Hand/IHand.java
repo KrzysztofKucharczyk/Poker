@@ -1,12 +1,12 @@
 package Hand;
 
 import java.util.List;
+import java.util.Map;
 
-import CardModel.Color;
+import CardModel.Suite;
 import CardModel.ICard;
-import Figure.FigureAnalyzer.IFigureAnalyzer;
-import Figure.FigureOrganiser.IFiguresOrganiser;
-import Figure.Model.IFigure;
+import HandCategory.HandCategory;
+import HandCategory.HandCategoryMatcher.IHandCategoryMatcher;
 
 public interface IHand {
 
@@ -16,17 +16,13 @@ public interface IHand {
 	
 	public List<Integer> getCardsValues();
 	
-	public Color getCardColor(int index);
+	public Suite getCardSuite(int index);
 	
 	public int getHighestValue();
 	
-	public IFigureAnalyzer getFigureAnalyzer();
+	public IHandCategoryMatcher getFigureAnalyzer();
 	
-	public List<IFiguresOrganiser>  getFigureOrganisers();
+	public Map<Integer, Integer> getMap();
 	
-	public IFigure getFigure();
-	
-	public void setFigureAnalyzer(IFigureAnalyzer figureAnalyzer);
-
-	int getCardValueFromGivenFigureOrganiser(int figureOrganiserNumber, int argument);
+	public HandCategory getHandCategory();
 }

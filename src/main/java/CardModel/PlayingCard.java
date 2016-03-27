@@ -2,13 +2,13 @@ package CardModel;
 public class PlayingCard implements ICard, Comparable<ICard>{
 
 	private int value;
-	private Color color;
+	private Suite suite;
 	
 	// --------------------------------------------
 	
-	public PlayingCard(int value, Color color) {
+	public PlayingCard(int value, Suite suite) {
 		this.value = value; 
-		this.color = color;
+		this.suite = suite;
 	}
 
 	// --------------------------------------------
@@ -17,12 +17,12 @@ public class PlayingCard implements ICard, Comparable<ICard>{
 		return value;
 	}
 
-	public Color getColor() {
-		return color;
+	public Suite getSuite() {
+		return suite;
 	}
 
 	public String toString() {
-		return value + "" + color;
+		return value + "" + suite;
 	}
 
 	public int compareTo(ICard other) {

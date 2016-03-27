@@ -1,6 +1,6 @@
-package Figure.Model;
+package HandCategory;
 
-public enum FigureName {
+public enum HandCategoryName {
 	HIGH_CARD,
 	PAIR,
 	THREE_OF_A_KIND,

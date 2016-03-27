@@ -10,7 +10,7 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import CardModel.Color;
+import CardModel.Suite;
 import CardModel.ICard;
 import CardModel.PlayingCard;
 import FileManagement.IFileReader;
@@ -39,7 +39,7 @@ public class PokerFileReaderTest {
 		List<ICard> cardList = new ArrayList<>();
 
 		for (int i = 1; i <= 5; i++)
-			cardList.add(new PlayingCard(i, Color.D));
+			cardList.add(new PlayingCard(i, Suite.D));
 
 		IHand checkingHand = new PokerHand(cardList);
 		assertNotNull(fileReader);
