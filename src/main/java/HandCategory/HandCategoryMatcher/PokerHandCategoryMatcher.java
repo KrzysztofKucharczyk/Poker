@@ -2,10 +2,8 @@ package HandCategory.HandCategoryMatcher;
 
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.Set;
 
 import CardModel.ICard;
 import Hand.IHand;
@@ -70,13 +68,13 @@ public class PokerHandCategoryMatcher implements IHandCategoryMatcher {
 	}
 
 	private boolean areTwoPairs() {
-		Set<Integer> cardValues = new HashSet<>();
+		int amountOfPairs = 0;
 
 		for (Entry<Integer, Integer> entry : matcher.entrySet())
 			if (entry.getValue() == 2)
-				cardValues.add(entry.getKey());
+				++amountOfPairs;
 
-		return cardValues.size() == 2;
+		return amountOfPairs == 2;
 	}
 
 	private boolean areThreeOfAKind() {

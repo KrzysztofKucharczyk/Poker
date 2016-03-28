@@ -13,7 +13,7 @@ import HandCategory.HandCategoryMatcher.PokerHandCategoryMatcher;
 
 public class PokerHand implements IHand {
 	private final List<ICard> hand;
-	private IHandCategoryMatcher figureAnalyzer = new PokerHandCategoryMatcher(this);
+	private IHandCategoryMatcher handCategoryMatcher = new PokerHandCategoryMatcher(this);
 
 	public PokerHand(List<ICard> cards) {
 		Collections.sort(cards);
@@ -21,8 +21,13 @@ public class PokerHand implements IHand {
 	}
 
 	@Override
-	public IHandCategoryMatcher getFigureAnalyzer() {
-		return figureAnalyzer;
+	public IHandCategoryMatcher getHandCategoryMatcher() {
+		return handCategoryMatcher;
+	}
+	
+	@Override
+	public Map<Integer, Integer> getMap() {
+		return getHandCategoryMatcher().getMap();
 	}
 
 	public List<ICard> getCardsList() {
@@ -62,12 +67,7 @@ public class PokerHand implements IHand {
 	}
 
 	@Override
-	public Map<Integer, Integer> getMap() {
-		return getFigureAnalyzer().getMap();
-	}
-
-	@Override
 	public HandCategory getHandCategory() {
-		return getFigureAnalyzer().getHandCategory();
+		return getHandCategoryMatcher().getHandCategory();
 	}
 }

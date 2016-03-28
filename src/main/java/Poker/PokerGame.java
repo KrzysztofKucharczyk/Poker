@@ -58,7 +58,7 @@ public class PokerGame implements IPoker {
 		if (playerStrength > enemyStrength)
 			winCounter.addPoint();
 		else if (playerStrength == enemyStrength)
-			if (DrawResolver.resolve(player, enemy) == 1)
+			if (DrawResolver.resolve(player, enemy) == GameResult.PLAYER_WON)
 				winCounter.addPoint();
 	}
 

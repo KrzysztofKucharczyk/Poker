@@ -20,7 +20,7 @@ public interface IHand {
 	
 	public int getHighestValue();
 	
-	public IHandCategoryMatcher getFigureAnalyzer();
+	public IHandCategoryMatcher getHandCategoryMatcher();
 	
 	public Map<Integer, Integer> getMap();
 	
